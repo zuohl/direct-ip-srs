@@ -24,9 +24,17 @@ jobs:
           sing-box version
 
       - name: Generate rule-set
-        run: python3 generate.py
+        run: |
+          python3 generate.py
+          code=$?
+          if [ $code -eq 2 ]; then
+            echo "UPSTREAM_UNCHANGED=true" >> "$GITHUB_ENV"
+          elif [ $code -ne 0 ]; then
+            exit $code
+          fi
 
       - name: Commit and push
+        if: env.UPSTREAM_UNCHANGED != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -37,3 +45,7 @@ jobs:
             git commit -m "chore: update FCM rule-set $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi
+
+      - name: Skip message
+        if: env.UPSTREAM_UNCHANGED == 'true'
+        run: echo "Upstream unchanged, skipping commit"

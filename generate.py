@@ -77,6 +77,10 @@ def compile_srs(json_path: str) -> bool:
     return True
 
 
+def json_dumps(rule_set: dict) -> str:
+    return json.dumps(rule_set, ensure_ascii=False, indent=2) + "\n"
+
+
 def main() -> int:
     text = fetch(SOURCE_URL)
     v4, v6 = parse_ips(text)
@@ -85,9 +89,20 @@ def main() -> int:
         return 1
 
     rule_set = build_rule_set(v4, v6)
+    content = json_dumps(rule_set)
+
+    # Skip if upstream unchanged: compare with the JSON currently committed.
+    if os.path.exists(OUT_JSON):
+        try:
+            with open(OUT_JSON, "r", encoding="utf-8") as f:
+                if f.read() == content:
+                    print("[skip] upstream unchanged, no update needed")
+                    return 2
+        except OSError:
+            pass
+
     with open(OUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(rule_set, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+        f.write(content)
     print(f"[json] wrote {len(v4)} IPv4 + {len(v6)} IPv6 -> {OUT_JSON}")
 
     compiled = compile_srs(OUT_JSON)

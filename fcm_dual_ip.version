@@ -1,5 +1,5 @@
-source=https://raw.githubusercontent.com/cagedbird043/fcm-hosts-next/main/fcm_dual.hosts
-generated_at=2026-08-04T12:24:24Z
+source=file:///tmp/fcm_dual.hosts
+generated_at=2026-08-04T12:28:02Z
 ipv4=12
 ipv6=12
 compiled=yes
