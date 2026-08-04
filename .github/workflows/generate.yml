@@ -25,11 +25,14 @@ jobs:
 
       - name: Generate rule-set
         run: |
+          set +e
           python3 generate.py
           code=$?
+          set -e
           if [ $code -eq 2 ]; then
             echo "UPSTREAM_UNCHANGED=true" >> "$GITHUB_ENV"
           elif [ $code -ne 0 ]; then
+            echo "FATAL: generate.py exited with code $code"
             exit $code
           fi
 
