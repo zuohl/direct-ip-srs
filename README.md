@@ -19,16 +19,16 @@ sing-box 配置中引用：
   "route": {
     "rules": [
       {
-        "rule_set": ["fcm"],
-        "outbound": "proxy"
+        "rule_set": ["fcm-ip"],
+        "outbound": "direct"
       }
     ]
   },
   "rule_set": [
     {
-      "tag": "fcm",
+      "tag": "fcm-ip",
       "type": "remote",
-      "url": "https://raw.githubusercontent.com/<你的用户名>/fcm-ip-srs/main/fcm_dual_ip.srs",
+      "url": "https://raw.githubusercontent.com/zuohl/fcm-ip-srs/main/fcm_dual_ip.srs",
       "format": "binary",
       "download_detour": "proxy"
     }
