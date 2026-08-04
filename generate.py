@@ -20,9 +20,9 @@ SOURCE_URL = os.environ.get(
     "https://raw.githubusercontent.com/cagedbird043/fcm-hosts-next/main/fcm_dual.hosts",
 )
 SINGBOX_BIN = os.environ.get("SINGBOX_BIN", "sing-box")
-OUT_JSON = "fcm_dual.srs.json"
-OUT_SRS = "fcm_dual.srs"
-OUT_VERSION = "fcm_dual.version"
+OUT_JSON = "fcm_dual_ip.srs.json"
+OUT_SRS = "fcm_dual_ip.srs"
+OUT_VERSION = "fcm_dual_ip.version"
 
 
 def fetch(url: str) -> str:
