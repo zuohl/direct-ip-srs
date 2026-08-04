@@ -41,7 +41,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add fcm_dual_ip.srs.json fcm_dual_ip.srs fcm_dual_ip.version
+          git add fcm_dual_ip.json fcm_dual_ip.srs fcm_dual_ip.version
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
