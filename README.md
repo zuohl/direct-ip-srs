@@ -6,7 +6,7 @@
 
 | 文件 | 说明 |
 |------|------|
-| `fcm_dual_ip.srs.json` | sing-box 规则集源码（双栈 IPv4 + IPv6） |
+| `fcm_dual_ip.json` | sing-box 规则集源码（双栈 IPv4 + IPv6） |
 | `fcm_dual_ip.srs` | 编译后的二进制规则集（sing-box 直接加载） |
 | `fcm_dual_ip.version` | 元数据（来源、生成时间、IP 数量） |
 
@@ -48,5 +48,5 @@ GitHub Actions 每天自动运行 4 次（UTC 0/6/12/18 点，即北京时间 8/
 python3 generate.py
 ```
 
-- 生成 `fcm_dual_ip.srs.json`（源码）和 `fcm_dual_ip.srs`（编译二进制）
+- 生成 `fcm_dual_ip.json`（源码）和 `fcm_dual_ip.srs`（编译二进制）
 - 可通过环境变量覆盖源地址：`FCM_SOURCE_URL=... python3 generate.py`
