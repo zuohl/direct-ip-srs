@@ -1,4 +1,4 @@
-name: Generate FCM SRS
+name: Generate Direct IP SRS
 
 on:
   schedule:
@@ -41,11 +41,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add fcm_dual_ip.json fcm_dual_ip.srs fcm_dual_ip.version
+          git add direct_ip.json direct_ip.srs direct_ip.version
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update FCM rule-set $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git commit -m "chore: update direct-ip rule-set $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi
 
